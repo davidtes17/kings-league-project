@@ -15,7 +15,7 @@
       "president": {
         "id": "djmariio",
         "name": "DjMaRiiO",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/djmariio.png",
+        "image": "djmariio.png",
         "teamId": "ultimate-mostoles"
       }
     },
@@ -45,7 +45,7 @@
       "president": {
         "id": "iker-casillas",
         "name": "Iker Casillas",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/iker-casillas.png",
+        "image": "iker-casillas.png",
         "teamId": "1k"
       }
     },
@@ -72,7 +72,7 @@
       "president": {
         "id": "thegrefg",
         "name": "TheGrefg",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/thegrefg.png",
+        "image": "thegrefg.png",
         "teamId": "saiyans-fc"
       }
     },
@@ -99,7 +99,7 @@
       "president": {
         "id": "kun-aguero",
         "name": "Kun Agüero",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/kun-aguero.png",
+        "image": "kun-aguero.png",
         "teamId": "kunisports"
       }
     },
@@ -129,7 +129,7 @@
       "president": {
         "id": "adri-contreras",
         "name": "Adri Contreras",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/adri-contreras.png",
+        "image": "adri-contreras.png",
         "teamId": "el-barrio"
       }
     },
@@ -159,7 +159,7 @@
       "president": {
         "id": "perxitaa",
         "name": "Perxitaa",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/perxitaa.png",
+        "image": "perxitaa.png",
         "teamId": "los-troncos-fc"
       }
     },
@@ -187,7 +187,7 @@
       "president": {
         "id": "ibai-llanos",
         "name": "Ibai Llanos",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/ibai-llanos.png",
+        "image": "ibai-llanos.png",
         "teamId": "porcinos-fc"
       }
     },
@@ -217,7 +217,7 @@
       "president": {
         "id": "spursito",
         "name": "Spursito",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/spursito.png",
+        "image": "spursito.png",
         "teamId": "rayo-barcelona"
       }
     },
@@ -247,7 +247,7 @@
       "president": {
         "id": "gerard-romero",
         "name": "Gerard Romero",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/gerard-romero.png",
+        "image": "gerard-romero.png",
         "teamId": "jijantes-fc"
       }
     },
@@ -274,7 +274,7 @@
       "president": {
         "id": "hnos-buyer",
         "name": "Hnos. Buyer",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/hnos-buyer.png",
+        "image": "hnos-buyer.png",
         "teamId": "xbuyer-team"
       }
     },
@@ -301,7 +301,7 @@
       "president": {
         "id": "juan-guarnizo",
         "name": "Juan Guarnizo",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/juan-guarnizo.png",
+        "image": "juan-guarnizo.png",
         "teamId": "aniquiladores-fc"
       }
     },
@@ -329,7 +329,7 @@
       "president": {
         "id": "rivers",
         "name": "Rivers",
-        "image": "https://kings-league-api.midudev.workers.dev/static/presidents/rivers.png",
+        "image": "rivers.png",
         "teamId": "pio-fc"
       }
     },
