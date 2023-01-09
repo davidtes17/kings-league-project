@@ -1,6 +1,8 @@
 import * as cheerio from 'cheerio' // Lib para procesar el HTML
 import { writeFile } from 'node:fs/promises' //fs Lib para leer y escribir archivos
 import path from 'node:path' // Lib para manejar rutas de archivos
+import teams from '../db/teams.json' assert { type: 'json' } // Importamos el archivo teams.json
+import presidents from '../db/presidents.json' assert { type: 'json' } // Importamos el archivo presidents.json
 
 const URLS = {
     leaderboard: 'https://kingsleague.pro/estadisticas/clasificacion/'
@@ -24,7 +26,7 @@ function cleanText(text) {
 async function getLeaderboard() {
     const $ = await scrape(URLS.leaderboard)
     const $rows = $('table tbody tr')
-    
+
     const LEADERBOARD_SELECTORS = {
         team: { selector: '.fs-table-text_3', typeOf: 'string' },
         wins: { selector: '.fs-table-text_4', typeOf: 'number' },
@@ -34,7 +36,17 @@ async function getLeaderboard() {
         yellowCards: { selector: '.fs-table-text_8', typeOf: 'number' },
         redCards: { selector: '.fs-table-text_9', typeOf: 'number' }
     }
+
+    function getTeam({ name }) {
+        const team = teams.find(team => team.name === name)
+        return team
+    }
     
+    function getPresident({ teamId }){
+        const president = presidents.find(president => president.teamId === teamId)
+        return president
+    }
+
     const leaderboard = []
     $rows.each((_, item) => {
         const $item = $(item)
@@ -51,7 +63,11 @@ async function getLeaderboard() {
                 return [key, value]
             })
 
-        leaderboard.push(Object.fromEntries(leaderboardEntries))
+        let leaderboardObject = Object.fromEntries(leaderboardEntries)
+        const teamInfo = getTeam({ name: leaderboardObject.team })
+        const presidentInfo = getPresident({ teamId: teamInfo.id })
+        leaderboardObject.team = {...teamInfo, president: presidentInfo}
+        leaderboard.push(leaderboardObject)
     })
 
     return leaderboard
@@ -61,6 +77,6 @@ const leaderboard = await getLeaderboard()
 
 const filePaths = {
     leaderboard: path.join(process.cwd(), 'db', 'leaderboard.json'),
-} 
+}
 
 await writeFile(filePaths.leaderboard, JSON.stringify(leaderboard, null, 2), 'utf-8')
