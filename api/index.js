@@ -30,14 +30,41 @@ app.get('/leaderboard', (ctx) => {
 	return ctx.json(leaderboard)
 })
 
+app.get('/leaderboard/:id', (ctx) => {
+	const id = ctx.req.param('id')
+	const specificLeaderboard = leaderboard.find(item => item.team.id === id)
+	
+	return specificLeaderboard
+		? ctx.json(specificLeaderboard)
+		: ctx.json({ message: 'Team not found' }, 404)
+})
+
 app.get('/teams', (ctx) => {
 	return ctx.json(teams)
+})
+
+app.get('/teams/:id', (ctx) => {
+	const id = ctx.req.param('id')
+	const team = teams.find(item => item.id === id)
+
+	return team
+		? ctx.json(team)
+		: ctx.json({ message: 'Team not found' }, 404)
 })
 
 app.get('/presidents', (ctx) => {
 	return ctx.json(presidents)
 })
 
-app.get('/static/*', serveStatic({ root: './'}))
+app.get('/presidents/:id', (ctx) => {
+	const id = ctx.req.param('id')
+	const president = presidents.find(item => item.id === id)
+
+	return president
+		? ctx.json(president)
+		: ctx.json({ message: 'President not found' }, 404)
+})
+
+app.get('/static/*', serveStatic({ root: './' }))
 
 export default app
