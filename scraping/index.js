@@ -60,7 +60,7 @@ async function getLeaderboard() {
 const leaderboard = await getLeaderboard()
 
 const filePaths = {
-    leaderboard: path.join(process.cwd(), 'db', 'leaderboard.json')
+    leaderboard: path.join(process.cwd(), 'db', 'leaderboard.json'),
 } 
 
 await writeFile(filePaths.leaderboard, JSON.stringify(leaderboard, null, 2), 'utf-8')
