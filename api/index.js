@@ -1,5 +1,7 @@
 import { Hono } from 'hono';
 import leaderboard from '../db/leaderboard.json'
+import teams from '../db/teams.json'
+import presidents from '../db/presidents.json'
 
 const app = new Hono();
 
@@ -9,12 +11,30 @@ app.get('/', (ctx) => {
 			endpoint: '/leaderboard',
 			method: 'GET',
 			description: 'Returns the leaderboard'
+		},
+		{
+			endpoint: '/teams',
+			method: 'GET',
+			description: 'Returns the teams'
+		},
+		{
+			endpoint: '/presidents',
+			method: 'GET',
+			description: 'Returns the presidents'
 		}
 	]);
 })
 
 app.get('/leaderboard', (ctx) => {
-	return ctx.json(leaderboard);
+	return ctx.json(leaderboard)
+})
+
+app.get('/teams', (ctx) => {
+	return ctx.json(teams)
+})
+
+app.get('/presidents', (ctx) => {
+	return ctx.json(presidents)
 })
 
 export default app
