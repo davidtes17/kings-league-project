@@ -6,7 +6,7 @@ describe("Worker", () => {
 
 	beforeAll(async () => {
 		worker = await unstable_dev(
-			"src/index.js",
+			"api/index.js",
 			{},
 			{ disableExperimentalWarning: true }
 		);
@@ -16,11 +16,14 @@ describe("Worker", () => {
 		await worker.stop();
 	});
 
-	it("should return Hello World", async () => {
+	it("Routes should have enpoint and description", async () => {
 		const resp = await worker.fetch();
 		if (resp) {
-			const text = await resp.text();
-			expect(text).toMatchInlineSnapshot(`"Hello World!"`);
+			const apiRoutes = await resp.json()
+			apiRoutes.forEach((endpoint) => {
+				expect(endpoint).toHaveProperty('endpoint')
+				expect(endpoint).toHaveProperty('description')
+			})
 		}
 	});
 });
