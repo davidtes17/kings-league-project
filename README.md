@@ -1,5 +1,5 @@
 <div align="center">    
-# kings-league-project
+# Kings League Clone Project
 *Work in progress*
 
 [![Scrape Kings League WebPage](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml/badge.svg)](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml)
