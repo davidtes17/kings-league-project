@@ -3,7 +3,7 @@
 
 *Work in progress*
 
-[![Scrape Kings League WebPage](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml/badge.svg)](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml)
+[![Scrape Kings League WebPage](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml/badge.svg)](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml) [![Deploy API](https://github.com/JoseGomez14/kings-league-project/actions/workflows/deploy-api.yml/badge.svg)](https://github.com/JoseGomez14/kings-league-project/actions/workflows/deploy-api.yml)
 
 <h2><a href='https://kingsleague-api.jgcode04.workers.dev/'>API</a> | <a href=''>WEB</a></h2>
 </div>
