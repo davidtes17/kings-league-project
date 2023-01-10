@@ -1,10 +1,4 @@
-import path from 'node:path'
-import { writeFile, readFile } from 'node:fs/promises'
-
-const DB_PATH = path.join(process.cwd(), './db/')
-const STATICS_PATH = path.join(process.cwd(), 'assets/static/presidents/')
-const RAW_PRESIDENTS = await readFile(`${DB_PATH}/raw-presidents.json`, 'utf-8').then(JSON.parse)
-const TEAMS = await readFile(`${DB_PATH}/teams.json`, 'utf-8').then(JSON.parse)
+import { RAW_PRESIDENTS, TEAMS, writeDBFile, writeStaticFile } from "../db/index.js"
 
 const promises = RAW_PRESIDENTS.map(async presidentInfo => {
     const { slug: id, title, _links: links } = presidentInfo
@@ -27,7 +21,7 @@ const promises = RAW_PRESIDENTS.map(async presidentInfo => {
     const buffer = Buffer.from(arrayBuffer)
 
     const imageFileName = `${id}.${fileExtension}`
-    await writeFile(`${STATICS_PATH}/${imageFileName}`, buffer)
+    await writeStaticFile(`presidents/${imageFileName}`, buffer)
 
     // Get the teamId
     const { id: teamId } = TEAMS.find(team => team.presidentId === id)
@@ -36,4 +30,4 @@ const promises = RAW_PRESIDENTS.map(async presidentInfo => {
 })
 
 const presidents = await Promise.all(promises)
-await writeFile(`${DB_PATH}/presidents.json`, JSON.stringify(presidents, null, 2))
+await writeDBFile('presidents', presidents)

@@ -1,8 +1,5 @@
 import * as cheerio from 'cheerio' // Lib para procesar el HTML
-import { writeFile } from 'node:fs/promises' //fs Lib para leer y escribir archivos
-import path from 'node:path' // Lib para manejar rutas de archivos
-import teams from '../db/teams.json' assert { type: 'json' } // Importamos el archivo teams.json
-import presidents from '../db/presidents.json' assert { type: 'json' } // Importamos el archivo presidents.json
+import { PRESIDENTS, TEAMS, writeDBFile } from '../db/index.js'
 
 const URLS = {
     leaderboard: 'https://kingsleague.pro/estadisticas/clasificacion/'
@@ -38,12 +35,12 @@ async function getLeaderboard() {
     }
 
     function getTeam({ name }) {
-        const team = teams.find(team => team.name === name)
+        const team = TEAMS.find(team => team.name === name)
         return team
     }
     
     function getPresident({ teamId }){
-        const president = presidents.find(president => president.teamId === teamId)
+        const president = PRESIDENTS.find(president => president.teamId === teamId)
         return president
     }
 
@@ -74,9 +71,4 @@ async function getLeaderboard() {
 }
 
 const leaderboard = await getLeaderboard()
-
-const filePaths = {
-    leaderboard: path.join(process.cwd(), 'db', 'leaderboard.json'),
-}
-
-await writeFile(filePaths.leaderboard, JSON.stringify(leaderboard, null, 2), 'utf-8')
+await writeDBFile('leaderboard', leaderboard)
