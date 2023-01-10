@@ -1,0 +1,21 @@
+name: Scrape Kings League WebPage
+
+on:
+  workflow_dispatch:
+    
+  schedule:
+    - cron: "0 */1 * * 0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: node scraping/leaderboard.js
+      - run: git config user.name jose-scraper-bot
+      - run: git add -A
+      - run: git commit -m "[bot] Update Kings League Database"
+      - run: git push origin main
