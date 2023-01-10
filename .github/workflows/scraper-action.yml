@@ -14,8 +14,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: node scraping/leaderboard.js
-      - run: git config user.name jose-scraper-bot
-      - run: git add -A
-      - run: git commit -m "[bot] Update Kings League Database"
-      - run: git push origin main
+      - run: npm ci
+      - run: |
+          node scraping/leaderboard.js
+          git config user.name jose-scraper-bot
+          git add -A
+          git commit -m "[bot] Update Kings League Database"
+          git push origin main
