@@ -1,5 +1,6 @@
 <div align="center">    
-# Kings League Clone Project
+<h1>👑 Kings League Clone Project ⚽️</h1>
+
 *Work in progress*
 
 [![Scrape Kings League WebPage](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml/badge.svg)](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml)
