@@ -20,5 +20,5 @@ jobs:
           git config --global user.email "jose.gomez14@udea.edu.co"
           git config --global user.name "jose-scraper-bot"
           git add .
-          git commit -m "[bot] Update Kings League Database"
+          git diff --quiet && git diff --staged --quiet || git commit -am "[bot] Update Kings League Database"
           git push origin main
