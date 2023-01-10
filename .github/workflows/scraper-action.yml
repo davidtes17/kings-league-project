@@ -17,7 +17,8 @@ jobs:
       - run: npm ci
       - run: |
           node scraping/leaderboard.js
-          git config user.name jose-scraper-bot
+          git config --global user.email "jose.gomez14@udea.edu.co"
+          git config --global user.name "jose-scraper-bot"
           git add .
           git commit -m "[bot] Update Kings League Database"
           git push origin main
