@@ -1,5 +1,11 @@
+<div align="center">    
 # kings-league-project
 *Work in progress*
+
+[![Scrape Kings League WebPage](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml/badge.svg)](https://github.com/JoseGomez14/kings-league-project/actions/workflows/scraper-action.yml)
+
+<h2><a href='https://kingsleague-api.jgcode04.workers.dev/'>API</a> | <a href=''>WEB</a></h2>
+</div>
 
 API y Web Clone de la Kings League
 
