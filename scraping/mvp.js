@@ -1,4 +1,5 @@
 import { TEAMS, writeDBFile } from '../db/index.js'
+import { logError, logInfo, logSuccess } from './log.js'
 import { MVP_PAGE, cleanText } from './utils.js'
 
 async function getMVP() {
@@ -42,5 +43,13 @@ async function getMVP() {
     return mvps
 }
 
-const mvps = await getMVP()
-await writeDBFile('mvp', mvps)
+try {
+    logInfo('Scraping MVPs...')
+    const mvps = await getMVP()
+    logSuccess('MVPs scraped successfully!')
+    logInfo('Writing MVPs to DB...')
+    await writeDBFile('mvp', mvps)
+    logSuccess('MVPs written to DB successfully!')
+} catch (error) {
+    logError(error)
+}

@@ -1,5 +1,6 @@
 import { PRESIDENTS, TEAMS, writeDBFile } from '../db/index.js'
-import { LEADERBOARD_PAGE, cleanText} from './utils.js'
+import { logInfo, logSuccess, logError } from './log.js'
+import { LEADERBOARD_PAGE, cleanText } from './utils.js'
 
 async function getLeaderboard() {
     const $ = await LEADERBOARD_PAGE
@@ -19,8 +20,8 @@ async function getLeaderboard() {
         const team = TEAMS.find(team => team.name === name)
         return team
     }
-    
-    function getPresident({ teamId }){
+
+    function getPresident({ teamId }) {
         const president = PRESIDENTS.find(president => president.teamId === teamId)
         return president
     }
@@ -44,12 +45,20 @@ async function getLeaderboard() {
         let leaderboardObject = Object.fromEntries(leaderboardEntries)
         const teamInfo = getTeam({ name: leaderboardObject.team })
         const presidentInfo = getPresident({ teamId: teamInfo.id })
-        leaderboardObject.team = {...teamInfo, president: presidentInfo}
+        leaderboardObject.team = { ...teamInfo, president: presidentInfo }
         leaderboard.push(leaderboardObject)
     })
 
     return leaderboard
 }
 
-const leaderboard = await getLeaderboard()
-await writeDBFile('leaderboard', leaderboard)
+try {
+    logInfo('Scraping Leaderboard...')
+    const leaderboard = await getLeaderboard()
+    logSuccess('Leaderboard scraped successfully!')
+    logInfo('Writing Leaderboard to DB...')
+    await writeDBFile('leaderboard', leaderboard)
+    logSuccess('Leaderboard written to DB successfully!')
+} catch (error) {
+    logError(error)
+}
