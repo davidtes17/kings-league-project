@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "publish:api": "wrangler publish api/index.js",
     "start": "astro dev",
+    "scrape": "node scraping/index.js",
     "test": "vitest"
   },
   "author": "",
