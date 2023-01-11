@@ -21,5 +21,6 @@ Dirección: https://kingsleague-api.jgcode04.workers.dev/
 - GET `/teams/:id`: Devuelve un equipo
 - GET `/presidents`: Devuvelve todos los presidentes
 - GET `/presidents/:id`: Devuvelve un presidente
+- GET `/mvp`: Devuelve el MVP de la liga
 
 ## Web
