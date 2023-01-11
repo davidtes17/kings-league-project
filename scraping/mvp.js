@@ -1,9 +1,7 @@
-import { TEAMS, writeDBFile } from '../db/index.js'
-import { logError, logInfo, logSuccess } from './log.js'
-import { MVP_PAGE, cleanText } from './utils.js'
+import { TEAMS } from '../db/index.js'
+import { cleanText } from './utils.js'
 
-async function getMVP() {
-    const $ = await MVP_PAGE
+export async function getMVP($) {
     const $rows = $('table tbody tr')
 
     const MVP_SELECTORS = {
@@ -41,15 +39,4 @@ async function getMVP() {
     })
 
     return mvps
-}
-
-try {
-    logInfo('Scraping MVPs...')
-    const mvps = await getMVP()
-    logSuccess('MVPs scraped successfully!')
-    logInfo('Writing MVPs to DB...')
-    await writeDBFile('mvp', mvps)
-    logSuccess('MVPs written to DB successfully!')
-} catch (error) {
-    logError(error)
 }

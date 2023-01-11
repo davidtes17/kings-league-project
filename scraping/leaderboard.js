@@ -1,9 +1,7 @@
-import { PRESIDENTS, TEAMS, writeDBFile } from '../db/index.js'
-import { logInfo, logSuccess, logError } from './log.js'
-import { LEADERBOARD_PAGE, cleanText } from './utils.js'
+import { PRESIDENTS, TEAMS } from '../db/index.js'
+import { cleanText } from './utils.js'
 
-async function getLeaderboard() {
-    const $ = await LEADERBOARD_PAGE
+export async function getLeaderboard($) {
     const $rows = $('table tbody tr')
 
     const LEADERBOARD_SELECTORS = {
@@ -50,15 +48,4 @@ async function getLeaderboard() {
     })
 
     return leaderboard
-}
-
-try {
-    logInfo('Scraping Leaderboard...')
-    const leaderboard = await getLeaderboard()
-    logSuccess('Leaderboard scraped successfully!')
-    logInfo('Writing Leaderboard to DB...')
-    await writeDBFile('leaderboard', leaderboard)
-    logSuccess('Leaderboard written to DB successfully!')
-} catch (error) {
-    logError(error)
 }
