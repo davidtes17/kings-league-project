@@ -16,8 +16,7 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: |
-          node scraping/leaderboard.js
-          npde scraping/mvp.js
+          node scraping/index.js
           git config --global user.email "jose.gomez14@udea.edu.co"
           git config --global user.name "jose-scraper-bot"
           git add .
