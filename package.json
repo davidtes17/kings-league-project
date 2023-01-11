@@ -5,8 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "astro": "astro",
+    "build": "astro build",
     "dev:api": "wrangler dev api/index.js",
+    "dev": "astro dev",
+    "preview": "astro preview",
     "publish:api": "wrangler publish api/index.js",
+    "start": "astro dev",
     "test": "vitest"
   },
   "author": "",
@@ -16,6 +21,7 @@
     "hono": "^2.7.2"
   },
   "devDependencies": {
+    "astro": "1.9.0",
     "vitest": "^0.27.0",
     "wrangler": "^2.6.2"
   }
