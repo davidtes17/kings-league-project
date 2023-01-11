@@ -1,27 +1,8 @@
-import * as cheerio from 'cheerio' // Lib para procesar el HTML
 import { PRESIDENTS, TEAMS, writeDBFile } from '../db/index.js'
-
-const URLS = {
-    leaderboard: 'https://kingsleague.pro/estadisticas/clasificacion/'
-}
-
-async function scrape(url) {
-    //Petición de la página mediante fetch
-    const res = await fetch(url)
-    const html = await res.text()
-
-    //Retorna la libreria con el HTML de la página usando la simbologia de JQuery
-    return cheerio.load(html)
-}
-
-function cleanText(text) {
-    return text
-        .replace(/\t|\n|\s:/g, '')
-        .replace(/.*:/g, '')
-}
+import { LEADERBOARD_PAGE, cleanText} from './utils.js'
 
 async function getLeaderboard() {
-    const $ = await scrape(URLS.leaderboard)
+    const $ = await LEADERBOARD_PAGE
     const $rows = $('table tbody tr')
 
     const LEADERBOARD_SELECTORS = {
