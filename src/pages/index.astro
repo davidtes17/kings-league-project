@@ -1,24 +1,64 @@
 ---
-import Layout from '../layouts/Layout.astro';
+// JavaScript Here
+import Layout from "../layouts/Layout.astro";
+
+const res = await fetch("https://kingsleague-api.jgcode04.workers.dev/teams");
+const teams = await res.json();
 ---
 
 <Layout title="Kings League Clone">
-	<main>
-		<h1>Kings League - Clone</h1>
-		<p>Clone of the webpage Kings League</p>
-	</main>
+  <div class="container m-auto">
+    <header class="mb-4">
+      <div class="flex justify-center gap-3 my-4">
+        {
+          teams.map(({ id, name, image }) => {
+            return (
+              <a href={`/team/${id}`}>
+                <img
+                  src={image}
+                  alt={`Escudo del equipo ${name}`}
+                  width="50px"
+                  height="50px"
+                />
+              </a>
+            );
+          })
+        }
+      </div>
+      <nav class="bg-orange-600 text-center">
+        <div class="py-3">
+          <h1 class="text-5xl"><b>Kings League - Clone</b></h1>
+          <p class="mt-4">Clone of the webpage Kings League</p>
+        </div>
+        <ul class="flex gap-5 justify-center pb-2">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/teams">Equipos</a>
+          </li>
+          <li>
+            <a href="/schedule">Calendario</a>
+          </li>
+          <li>
+            <a href="/statistics">Estadísticas</a>
+          </li>
+          <li>
+            <a href="/contact">Contacto</a>
+          </li>
+          <li>
+            <a href="/bylaw">Reglamento</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="text-center">
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis qui
+        sit deleniti doloremque alias quo sapiente reprehenderit voluptatibus.
+        Ipsam commodi pariatur corporis, voluptatibus enim ratione incidunt
+        laudantium. Accusantium, magni ducimus?
+      </p>
+    </main>
+  </div>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-		text-align: center;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-</style>
