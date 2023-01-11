@@ -1,8 +1,18 @@
-import * as cheerio from 'cheerio' 
+import * as cheerio from 'cheerio'
+import { writeDBFile } from '../db/index.js'
+import { logInfo, logSuccess, logError } from './log.js'
+import { getLeaderboard } from './leaderboard.js'
+import { getMVP } from './mvp.js'
 
-const URLS = {
-    leaderboard: 'https://kingsleague.pro/estadisticas/clasificacion/',
-    mvp: 'https://kingsleague.pro/estadisticas/mvp/'
+export const SCRAPINGS = {
+    leaderboard: {
+        url: 'https://kingsleague.pro/estadisticas/clasificacion/',
+        scraper: getLeaderboard
+    },
+    mvp: {
+        url: 'https://kingsleague.pro/estadisticas/mvp/',
+        scraper: getMVP
+    }
 }
 
 async function scrape(url) {
@@ -14,11 +24,26 @@ async function scrape(url) {
     return cheerio.load(html)
 }
 
+export async function scrapeAndSave(name) {
+    try {
+        const { url, scraper } = SCRAPINGS[name]
+
+        logInfo(`Scraping ${name}...`)
+        const $ = await scrape(url)
+        const data = await scraper($)
+        logSuccess(`${name} scraped successfully!`)
+
+        logInfo(`Writing ${name} to DB...`)
+        await writeDBFile(name, data)
+        logSuccess(`${name} written to DB successfully!`)
+    } catch (error) {
+        logError(`Error scraping ${name}`)
+        logError(error)
+    }
+}
+
 export function cleanText(text) {
     return text
         .replace(/\t|\n|\s:/g, '')
         .replace(/.*:/g, '')
 }
-
-export const LEADERBOARD_PAGE = scrape(URLS.leaderboard);
-export const MVP_PAGE = scrape(URLS.mvp);
