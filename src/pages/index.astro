@@ -13,7 +13,7 @@ const teams = await res.json();
         {
           teams.map(({ id, name, image }) => {
             return (
-              <a href={`/team/${id}`}>
+              <a href={`/teams/${id}`}>
                 <img
                   src={image}
                   alt={`Escudo del equipo ${name}`}
